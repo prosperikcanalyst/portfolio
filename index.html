@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Prosper Ikechukwu — Virtual Assistant & Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --card: #12121c;
+    --card2: #16162a;
+    --border: rgba(0,201,255,0.12);
+    --accent: #00c9ff;
+    --accent2: #7b61ff;
+    --text: #f0f0f0;
+    --muted: #8a8a9a;
+    --white: #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,201,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,201,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    text-decoration: none;
+  }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: #000 !important;
+    padding: 0.5rem 1.4rem;
+    border-radius: 4px;
+    font-weight: 600 !important;
+  }
+  .nav-cta:hover { background: #33d6ff; color: #000 !important; }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    z-index: 1;
+  }
+
+  .hero-content { max-width: 800px; }
+
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 40px; height: 1px;
+    background: var(--accent);
+  }
+
+  .hero-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+
+  .hero-role-line {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    font-weight: 400;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    min-height: 2.8rem;
+  }
+
+  .typed-text { color: var(--accent); font-weight: 600; }
+  .cursor {
+    display: inline-block;
+    width: 3px; height: 1.2em;
+    background: var(--accent);
+    margin-left: 2px;
+    vertical-align: middle;
+    animation: blink 0.8s infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 560px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #000;
+    padding: 0.85rem 2rem;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: #33d6ff; transform: translateY(-2px); }
+
+  .btn-secondary {
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.85rem 2rem;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 4rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-top: 0.2rem;
+  }
+
+  /* PHOTO placeholder */
+  .hero-photo {
+    position: absolute;
+    right: 6rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 300px;
+    height: 360px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 1rem;
+    overflow: hidden;
+  }
+
+  .hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    display: none;
+  }
+
+  .photo-placeholder-icon {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background: var(--card2);
+    border: 2px dashed rgba(0,201,255,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+  }
+
+  .photo-upload-label {
+    cursor: pointer;
+    color: var(--accent);
+    font-size: 0.8rem;
+    border: 1px solid var(--border);
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+    transition: background 0.2s;
+  }
+  .photo-upload-label:hover { background: rgba(0,201,255,0.08); }
+  #photoInput { display: none; }
+
+  .accent-line {
+    position: absolute;
+    right: 6rem;
+    width: 300px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 2px;
+    top: calc(50% + 185px);
+    transform: none;
+  }
+
+  /* SECTIONS */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 6rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 3rem;
+  }
+
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    margin-bottom: 3rem;
+    opacity: 0.3;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+    line-height: 1.85;
+  }
+
+  .about-text p span { color: var(--text); }
+
+  .about-details { display: flex; flex-direction: column; gap: 1rem; }
+
+  .detail-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .detail-icon {
+    width: 36px; height: 36px;
+    border-radius: 6px;
+    background: rgba(0,201,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .detail-label { font-size: 0.75rem; color: var(--muted); }
+  .detail-value { font-size: 0.95rem; color: var(--text); font-weight: 500; }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.8rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+  .skill-card-icon { font-size: 1.6rem; margin-bottom: 0.8rem; }
+  .skill-card-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    background: rgba(0,201,255,0.08);
+    border: 1px solid rgba(0,201,255,0.2);
+    padding: 0.25rem 0.6rem;
+    border-radius: 3px;
+    letter-spacing: 0.03em;
+  }
+
+  /* EXPERIENCE */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, var(--accent), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-left: 2rem;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: -2.45rem;
+    top: 0.4rem;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 12px rgba(0,201,255,0.6);
+  }
+
+  .timeline-period {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-role {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .timeline-company {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  .timeline-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+
+  .timeline-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .timeline-card li {
+    color: var(--muted);
+    font-size: 0.92rem;
+    padding-left: 1.2rem;
+    position: relative;
+    line-height: 1.6;
+  }
+  .timeline-card li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.7rem;
+    top: 0.25rem;
+  }
+  .timeline-card li span { color: var(--text); }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .project-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 8px 8px 0 0;
+  }
+
+  .project-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    margin-bottom: 0.8rem;
+  }
+
+  .project-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.8rem;
+  }
+
+  .project-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+  }
+
+  .project-metrics {
+    display: flex;
+    gap: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .metric { text-align: center; }
+  .metric-val {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .metric-label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* EDUCATION */
+  .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+
+  .edu-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.8rem;
+    transition: border-color 0.2s;
+  }
+  .edu-card:hover { border-color: var(--accent); }
+
+  .edu-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+  .edu-degree {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+  .edu-inst { font-size: 0.88rem; color: var(--muted); margin-bottom: 0.5rem; }
+  .edu-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  /* CONTACT */
+  .contact-wrapper {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .contact-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+
+  .contact-desc { color: var(--muted); line-height: 1.8; margin-bottom: 2rem; }
+
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+  .contact-link:hover { color: var(--accent); }
+
+  .contact-link-icon {
+    width: 36px; height: 36px;
+    border-radius: 6px;
+    background: rgba(0,201,255,0.08);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .contact-link:hover .contact-link-icon { background: rgba(0,201,255,0.18); border-color: var(--accent); }
+
+  .contact-cta { display: flex; flex-direction: column; gap: 1rem; align-items: flex-start; }
+  .contact-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(0,201,255,0.08);
+    border: 1px solid rgba(0,201,255,0.25);
+    border-radius: 20px;
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .status-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #00ff88;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2.5rem 4rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.8rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* SCROLL ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.2rem; }
+    .hero { padding: 7rem 1.5rem 4rem; }
+    .hero-photo { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .contact-wrapper { grid-template-columns: 1fr; }
+    .hero-stats { gap: 1.5rem; }
+  }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">PI.</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">AVAILABLE FOR HIRE</div>
+    <h1 class="hero-name">Prosper<br/>Ikechukwu</h1>
+    <div class="hero-role-line">
+      <span class="typed-text" id="typed"></span><span class="cursor"></span>
+    </div>
+    <p class="hero-desc">
+      I help US-based startups and firms run cleaner, faster, and smarter — through sharp data work, executive support, and systems that don't need hand-holding to work.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Work With Me</a>
+      <a href="#projects" class="btn-secondary">See My Work</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">2+</div>
+        <div class="stat-label">Years Remote Experience</div>
+      </div>
+      <div>
+        <div class="stat-num">$1.1B+</div>
+        <div class="stat-label">Permit Value Tracked</div>
+      </div>
+      <div>
+        <div class="stat-num">22K+</div>
+        <div class="stat-label">Records Managed</div>
+      </div>
+      <div>
+        <div class="stat-num">2</div>
+        <div class="stat-label">US Clients Served</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Photo -->
+  <div class="hero-photo" id="photoBox">
+    <img id="photoImg" src="" alt="Prosper Ikechukwu"/>
+    <div class="photo-placeholder-icon" id="photoIcon">👤</div>
+    <div style="color:var(--muted);font-size:0.8rem;text-align:center;" id="photoText">Upload your photo here</div>
+    <label class="photo-upload-label" for="photoInput">Choose Photo</label>
+    <input type="file" id="photoInput" accept="image/*"/>
+  </div>
+  <div class="accent-line"></div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-eyebrow">// WHO I AM</div>
+  <h2 class="section-title">About Me</h2>
+  <div class="section-divider"></div>
+  <div class="about-grid fade-up">
+    <div class="about-text">
+      <p>I'm a <span>Virtual Assistant and Data Analyst</span> based in Lagos, Nigeria, with over two years of remote experience supporting US-based companies in real estate and tech.</p>
+      <p>At <span>Ramius</span>, I worked directly with the co-founders — processing data, building intelligence dashboards, managing project workflows, and keeping operations running across multiple workstreams without needing daily supervision.</p>
+      <p>At <span>Panther Capital</span>, a Florida real estate firm, I handled property analytics using CoStar and Reonomy, managed lead pipelines in Apollo, and coordinated agents inside Zoho CRM.</p>
+      <p>I work independently, I take accuracy seriously, and I build systems that keep working after I hand them over. That's the standard I hold myself to on every engagement.</p>
+    </div>
+    <div class="about-details">
+      <div class="detail-card">
+        <div class="detail-icon">📍</div>
+        <div>
+          <div class="detail-label">Location</div>
+          <div class="detail-value">Lagos, Nigeria (Remote-ready)</div>
+        </div>
+      </div>
+      <div class="detail-card">
+        <div class="detail-icon">⏰</div>
+        <div>
+          <div class="detail-label">Availability</div>
+          <div class="detail-value">Immediate · Flexible time zones</div>
+        </div>
+      </div>
+      <div class="detail-card">
+        <div class="detail-icon">🌐</div>
+        <div>
+          <div class="detail-label">Time Zones</div>
+          <div class="detail-value">EST · GMT · WAT</div>
+        </div>
+      </div>
+      <div class="detail-card">
+        <div class="detail-icon">💬</div>
+        <div>
+          <div class="detail-label">Languages</div>
+          <div class="detail-value">English (Fluent, Professional)</div>
+        </div>
+      </div>
+      <div class="detail-card">
+        <div class="detail-icon">📡</div>
+        <div>
+          <div class="detail-label">Setup</div>
+          <div class="detail-value">High-speed internet · Backup power</div>
+        </div>
+      </div>
+      <div class="detail-card">
+        <div class="detail-icon">📋</div>
+        <div>
+          <div class="detail-label">References</div>
+          <div class="detail-value">Available immediately on request</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-eyebrow">// WHAT I BRING</div>
+  <h2 class="section-title">Skills & Tools</h2>
+  <div class="section-divider"></div>
+  <div class="skills-grid">
+    <div class="skill-card fade-up">
+      <div class="skill-card-icon">📊</div>
+      <div class="skill-card-title">Data & Analysis</div>
+      <div class="skill-tags">
+        <span class="tag">Microsoft Excel</span>
+        <span class="tag">Google Sheets</span>
+        <span class="tag">Python</span>
+        <span class="tag">pandas</span>
+        <span class="tag">openpyxl</span>
+        <span class="tag">PDF Extraction</span>
+        <span class="tag">Dashboard Building</span>
+        <span class="tag">Data Cleaning</span>
+      </div>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-card-icon">🏢</div>
+      <div class="skill-card-title">Real Estate Tools</div>
+      <div class="skill-tags">
+        <span class="tag">CoStar</span>
+        <span class="tag">Reonomy</span>
+        <span class="tag">Apollo</span>
+        <span class="tag">Property Comparables</span>
+        <span class="tag">Market Analytics</span>
+        <span class="tag">Lead Generation</span>
+        <span class="tag">Due Diligence</span>
+      </div>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-card-icon">🗂️</div>
+      <div class="skill-card-title">CRM & Project Management</div>
+      <div class="skill-tags">
+        <span class="tag">Zoho CRM</span>
+        <span class="tag">Jira</span>
+        <span class="tag">Trello</span>
+        <span class="tag">Asana</span>
+        <span class="tag">Airtable</span>
+        <span class="tag">Sprint Tracking</span>
+      </div>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-card-icon">⚙️</div>
+      <div class="skill-card-title">Admin & Productivity</div>
+      <div class="skill-tags">
+        <span class="tag">Microsoft Office</span>
+        <span class="tag">Google Workspace</span>
+        <span class="tag">Canva</span>
+        <span class="tag">Shopify</span>
+        <span class="tag">Calendar Management</span>
+        <span class="tag">Email Management</span>
+      </div>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-card-icon">💻</div>
+      <div class="skill-card-title">Technical</div>
+      <div class="skill-tags">
+        <span class="tag">HTML/CSS</span>
+        <span class="tag">GitHub Pages</span>
+        <span class="tag">Airbnb</span>
+        <span class="tag">Turno</span>
+        <span class="tag">Flutterwave</span>
+        <span class="tag">Make (Integromat)</span>
+      </div>
+    </div>
+    <div class="skill-card fade-up">
+      <div class="skill-card-icon">✍️</div>
+      <div class="skill-card-title">Communication & Admin</div>
+      <div class="skill-tags">
+        <span class="tag">Executive Correspondence</span>
+        <span class="tag">Transcript Processing</span>
+        <span class="tag">Report Writing</span>
+        <span class="tag">Stakeholder Updates</span>
+        <span class="tag">Open Items Tracking</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-eyebrow">// WHERE I'VE WORKED</div>
+  <h2 class="section-title">Experience</h2>
+  <div class="section-divider"></div>
+  <div class="timeline">
+    <div class="timeline-item fade-up">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">APR 2026 — PRESENT</div>
+      <div class="timeline-role">Virtual Assistant & Data Analyst</div>
+      <div class="timeline-company">Ramius · US-based Tech Startup · Remote</div>
+      <div class="timeline-card">
+        <ul>
+          <li>Built and deployed a <span>construction permit intelligence dashboard</span> covering 22,720+ records and $1.1B+ in declared permit value — used directly by founders for market decisions</li>
+          <li>Used <span>Python</span> to automate extraction of structured data from multiple PDFs into clean, labelled Excel spreadsheets, eliminating hours of manual data entry per week</li>
+          <li>Processed daily meeting transcripts into <span>structured summaries and open items emails</span> for co-founders, keeping all action items visible and accountable</li>
+          <li>Maintained <span>Jira project boards</span>, weekly billing records, and recurring administrative workflows across multiple active workstreams</li>
+          <li>Cleaned and processed large datasets using pandas — standardising formats, removing duplicates, and preparing data for dashboard use</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item fade-up">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">JUL 2025 — MAY 2026</div>
+      <div class="timeline-role">Virtual Assistant & Data Analyst</div>
+      <div class="timeline-company">Panther Capital · Florida Real Estate Firm · Remote</div>
+      <div class="timeline-card">
+        <ul>
+          <li>Generated and analysed <span>property comparables</span> using CoStar to support investment decisions with accurate, well-structured market data</li>
+          <li>Used <span>Reonomy</span> to research property ownership, transaction history, and asset details for due diligence across multiple deals</li>
+          <li>Built and managed <span>lead pipelines in Apollo</span>, sourcing and qualifying prospects for the sales team and reducing manual prospecting time significantly</li>
+          <li>Coordinated agents and cold callers inside <span>Zoho CRM</span> — tracking activity, updating records, and keeping follow-up workflows on schedule</li>
+          <li>Handled data entry, record maintenance, and administrative coordination across multiple ongoing real estate projects independently</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-eyebrow">// WHAT I'VE BUILT</div>
+  <h2 class="section-title">Featured Projects</h2>
+  <div class="section-divider"></div>
+  <div class="projects-grid">
+    <div class="project-card fade-up">
+      <div class="project-num">PROJECT 01</div>
+      <div class="project-title">Construction Permit Intelligence Dashboard</div>
+      <div class="project-desc">
+        A full data intelligence dashboard built for Ramius covering Lee County, Florida construction permits. Features advanced filtering, export functionality, AI market summaries, and a "Look Deeper" analysis mode. Deployed on GitHub Pages and used live by client leadership.
+      </div>
+      <div class="skill-tags" style="margin-bottom:1rem;">
+        <span class="tag">HTML/CSS</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Python</span>
+        <span class="tag">GitHub Pages</span>
+        <span class="tag">Data Visualisation</span>
+      </div>
+      <div class="project-metrics">
+        <div class="metric">
+          <div class="metric-val">22,720</div>
+          <div class="metric-label">Records</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">$1.1B+</div>
+          <div class="metric-label">Permit Value</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">Live</div>
+          <div class="metric-label">Status</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-num">PROJECT 02</div>
+      <div class="project-title">Python PDF Data Extraction Pipeline</div>
+      <div class="project-desc">
+        Automated extraction of structured data from multiple PDFs into clean, labelled Excel spreadsheets using Python. Replaced a manual data entry process, saving hours of work per reporting cycle with zero loss in accuracy.
+      </div>
+      <div class="skill-tags" style="margin-bottom:1rem;">
+        <span class="tag">Python</span>
+        <span class="tag">pandas</span>
+        <span class="tag">openpyxl</span>
+        <span class="tag">Automation</span>
+        <span class="tag">Excel</span>
+      </div>
+      <div class="project-metrics">
+        <div class="metric">
+          <div class="metric-val">100%</div>
+          <div class="metric-label">Accuracy</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">Hrs</div>
+          <div class="metric-label">Saved Weekly</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">Auto</div>
+          <div class="metric-label">Process</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-up">
+      <div class="project-num">PROJECT 03</div>
+      <div class="project-title">Real Estate Lead & CRM System</div>
+      <div class="project-desc">
+        Built and maintained a structured lead pipeline at Panther Capital using Apollo for prospecting and Zoho CRM for agent and cold caller coordination. Kept sales workflows running cleanly across multiple active projects simultaneously.
+      </div>
+      <div class="skill-tags" style="margin-bottom:1rem;">
+        <span class="tag">Apollo</span>
+        <span class="tag">Zoho CRM</span>
+        <span class="tag">CoStar</span>
+        <span class="tag">Reonomy</span>
+        <span class="tag">Lead Gen</span>
+      </div>
+      <div class="project-metrics">
+        <div class="metric">
+          <div class="metric-val">Multi</div>
+          <div class="metric-label">Projects</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">FL</div>
+          <div class="metric-label">Market</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">Real</div>
+          <div class="metric-label">Estate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-eyebrow">// BACKGROUND</div>
+  <h2 class="section-title">Education & Certifications</h2>
+  <div class="section-divider"></div>
+  <div class="edu-grid">
+    <div class="edu-card fade-up">
+      <div class="edu-icon">🎓</div>
+      <div class="edu-degree">Bachelor of Science</div>
+      <div class="edu-inst">Federal University of Petroleum Resources, Effurun, Delta State</div>
+      <div class="edu-year">2015</div>
+    </div>
+    <div class="edu-card fade-up">
+      <div class="edu-icon">📜</div>
+      <div class="edu-degree">Virtual Assistant Certificate</div>
+      <div class="edu-inst">The Assistant Hive</div>
+      <div class="edu-year">2025</div>
+    </div>
+    <div class="edu-card fade-up">
+      <div class="edu-icon">🏅</div>
+      <div class="edu-degree">Virtual Assistant Certificate</div>
+      <div class="edu-inst">ALX Africa</div>
+      <div class="edu-year">2024</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-eyebrow">// LET'S WORK</div>
+  <h2 class="section-title">Get In Touch</h2>
+  <div class="section-divider"></div>
+  <div class="contact-wrapper fade-up">
+    <div>
+      <div class="contact-badge"><span class="status-dot"></span> Open to opportunities</div>
+      <br/>
+      <div class="contact-title">Ready to work.<br/>Are you?</div>
+      <p class="contact-desc">I'm currently available for remote VA, data analyst, and admin roles. If you have a project or a full-time position and you need someone who delivers without hand-holding — let's talk.</p>
+      <div class="contact-links">
+        <a href="mailto:prosperikc@gmail.com" class="contact-link">
+          <div class="contact-link-icon">✉️</div>
+          prosperikc@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/prosper-ikechukwu" target="_blank" class="contact-link">
+          <div class="contact-link-icon">💼</div>
+          linkedin.com/in/prosper-ikechukwu
+        </a>
+        <a href="https://www.upwork.com" target="_blank" class="contact-link">
+          <div class="contact-link-icon">🔗</div>
+          Upwork Profile
+        </a>
+      </div>
+    </div>
+    <div class="contact-cta">
+      <div style="background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:2rem;width:100%;">
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--white);margin-bottom:1rem;font-size:1rem;">What I'm looking for</div>
+        <div style="display:flex;flex-direction:column;gap:0.8rem;">
+          <div style="display:flex;align-items:center;gap:0.8rem;color:var(--muted);font-size:0.88rem;">
+            <span style="color:var(--accent);">▸</span> Remote VA or Data Analyst roles
+          </div>
+          <div style="display:flex;align-items:center;gap:0.8rem;color:var(--muted);font-size:0.88rem;">
+            <span style="color:var(--accent);">▸</span> Real estate or tech companies
+          </div>
+          <div style="display:flex;align-items:center;gap:0.8rem;color:var(--muted);font-size:0.88rem;">
+            <span style="color:var(--accent);">▸</span> Dashboard & reporting projects
+          </div>
+          <div style="display:flex;align-items:center;gap:0.8rem;color:var(--muted);font-size:0.88rem;">
+            <span style="color:var(--accent);">▸</span> Executive & admin support
+          </div>
+          <div style="display:flex;align-items:center;gap:0.8rem;color:var(--muted);font-size:0.88rem;">
+            <span style="color:var(--accent);">▸</span> Automation & workflow projects
+          </div>
+        </div>
+        <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border);">
+          <div style="font-size:0.78rem;color:var(--muted);margin-bottom:0.5rem;font-family:'JetBrains Mono',monospace;letter-spacing:0.08em;">REFERENCES</div>
+          <div style="font-size:0.88rem;color:var(--text);">Available immediately from Panther Capital & Ramius</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Built by Prosper Ikechukwu · Lagos, Nigeria · <a href="mailto:prosperikc@gmail.com" style="color:var(--accent);text-decoration:none;">prosperikc@gmail.com</a></p>
+</footer>
+
+<script>
+  // Typing effect
+  const roles = [
+    "Virtual Assistant",
+    "Data Analyst",
+    "Dashboard Builder",
+    "Real Estate VA",
+    "Executive Assistant",
+    "Admin Professional"
+  ];
+  let roleIdx = 0, charIdx = 0, deleting = false;
+  const typedEl = document.getElementById('typed');
+
+  function type() {
+    const current = roles[roleIdx];
+    if (!deleting) {
+      typedEl.textContent = current.slice(0, charIdx + 1);
+      charIdx++;
+      if (charIdx === current.length) {
+        deleting = true;
+        setTimeout(type, 1800);
+        return;
+      }
+    } else {
+      typedEl.textContent = current.slice(0, charIdx - 1);
+      charIdx--;
+      if (charIdx === 0) {
+        deleting = false;
+        roleIdx = (roleIdx + 1) % roles.length;
+      }
+    }
+    setTimeout(type, deleting ? 50 : 80);
+  }
+  type();
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Photo upload
+  document.getElementById('photoInput').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      const img = document.getElementById('photoImg');
+      img.src = ev.target.result;
+      img.style.display = 'block';
+      document.getElementById('photoIcon').style.display = 'none';
+      document.getElementById('photoText').style.display = 'none';
+      document.querySelector('.photo-upload-label').style.display = 'none';
+    };
+    reader.readAsDataURL(file);
+  });
+</script>
+</body>
+</html>
