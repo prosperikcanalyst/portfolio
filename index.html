@@ -783,6 +783,83 @@
     .gallery-img-wrap { height: 180px; }
   }
 
+
+  /* HAMBURGER */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 200;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* MOBILE MENU */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 56px;
+    left: 0; right: 0;
+    background: rgba(10,10,15,0.97);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    z-index: 99;
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: transform 0.3s, opacity 0.3s;
+    pointer-events: none;
+  }
+  .mobile-menu.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+  .mobile-menu ul {
+    list-style: none;
+    padding: 1rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .mob-link {
+    display: block;
+    padding: 0.85rem 0;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .mob-link:hover { color: var(--accent); }
+  .mob-cta {
+    margin-top: 0.8rem;
+    color: var(--accent) !important;
+    border-bottom: none;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 600px) {
+    .hamburger { display: flex; }
+    .mobile-menu { display: block; }
+    .nav-cta { display: none; }
+  }
+
 </style>
 </head>
 <body>
@@ -798,7 +875,20 @@
     <li><a href="#work-samples">Work Samples</a></li>
     <li><a href="#contact" class="nav-cta">Hire Me</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#about" class="mob-link">About</a></li>
+    <li><a href="#skills" class="mob-link">Skills</a></li>
+    <li><a href="#experience" class="mob-link">Experience</a></li>
+    <li><a href="#projects" class="mob-link">Projects</a></li>
+    <li><a href="#work-samples" class="mob-link">Work Samples</a></li>
+    <li><a href="#contact" class="mob-link mob-cta">Hire Me</a></li>
+  </ul>
+</div>
 
 <!-- HERO -->
 <div class="hero">
@@ -811,10 +901,7 @@
     <p class="hero-desc">
       I help US-based startups and firms run cleaner, faster, and smarter — through sharp data work, executive support, and systems that don't need hand-holding to work.
     </p>
-    <div class="hero-actions">
-      <a href="#contact" class="btn-primary">Work With Me</a>
-      <a href="#projects" class="btn-secondary">See My Work</a>
-    </div>
+
     <div class="hero-stats">
       <div>
         <div class="stat-num">2+</div>
@@ -1395,6 +1482,31 @@
   });
   document.getElementById('lightbox').addEventListener('click', function(e) {
     if (e.target === this) this.style.display = 'none';
+  });
+
+
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+
+  document.querySelectorAll('.mob-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    });
+  });
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    }
   });
 
 </script>
